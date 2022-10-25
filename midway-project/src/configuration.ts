@@ -7,7 +7,7 @@ import { join } from 'path';
 // import { NotFoundFilter } from './filter/notfound.filter';
 import { ReportMiddleware } from './middleware/report.middleware';
 import * as view from '@midwayjs/view-nunjucks';
-
+import { WeatherErrorFilter } from './filter/weather.filter';
 //configuration 文件是 Midway 的生命周期入口文件，承担了组件开关，配置加载和生命周期管理的作用
 
 @Configuration({
@@ -32,5 +32,8 @@ export class ContainerLifeCycle {
     this.app.useMiddleware([ReportMiddleware]);
     // add filter
     // this.app.useFilter([NotFoundFilter, DefaultErrorFilter]);
+
+    // add filter
+    this.app.useFilter([WeatherErrorFilter]);
   }
 }
