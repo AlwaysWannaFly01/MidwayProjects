@@ -27,3 +27,8 @@ $ npm start
 
 
 [midway]: https://midwayjs.org
+
+
+### 
+src/config/plugin 插件开关
+src/config/config.${环境} 具体环境的（包括插件）配置
