@@ -6,8 +6,12 @@ import { join } from 'path';
 // import { DefaultErrorFilter } from './filter/default.filter';
 // import { NotFoundFilter } from './filter/notfound.filter';
 import { ReportMiddleware } from './middleware/report.middleware';
+import * as view from '@midwayjs/view-nunjucks';
+
+//configuration 文件是 Midway 的生命周期入口文件，承担了组件开关，配置加载和生命周期管理的作用
 
 @Configuration({
+  //就使用来导入（开启）组件的方法
   imports: [
     koa,
     validate,
@@ -15,6 +19,7 @@ import { ReportMiddleware } from './middleware/report.middleware';
       component: info,
       enabledEnvironment: ['local'],
     },
+    view,
   ],
   importConfigs: [join(__dirname, './config')],
 })

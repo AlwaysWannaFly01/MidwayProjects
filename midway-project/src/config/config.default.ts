@@ -6,4 +6,8 @@ export default {
   koa: {
     port: 7001,
   },
+  //指定为 nunjucks 模板
+  view: {
+    defaultViewEngine: 'nunjucks',
+  },
 } as MidwayConfig;
