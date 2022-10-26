@@ -2,6 +2,7 @@ import { IMiddleware } from '@midwayjs/core';
 import { Middleware } from '@midwayjs/decorator';
 import { NextFunction, Context } from '@midwayjs/koa';
 
+//使用 @Middleware 装饰器标识中间件
 @Middleware()
 export class ReportMiddleware implements IMiddleware<Context, NextFunction> {
   resolve() {
@@ -22,6 +23,24 @@ export class ReportMiddleware implements IMiddleware<Context, NextFunction> {
     };
   }
 
+  // 在中间件执行时，我们可以添加路由忽略的逻辑
+  ignore(ctx: Context): boolean {
+    // 下面的路由将忽略此中间件
+    return (
+      ctx.path === '/' || ctx.path === '/api/auth' || ctx.path === '/api/login'
+    );
+  }
+
+  // 同理，也可以添加匹配的路由，只有匹配到的路由才会执行该中间件。
+  // ignore 和 match 同时只有一个会生效。
+  // match(ctx: Context): boolean {
+  //   // 下面的匹配到的路由会执行此中间件
+  //   if (ctx.path === '/api/index') {
+  //     return true;
+  //   }
+  // }
+
+  //这里的静态 getName 方法，用来指定中间件的名字，方便排查问题
   static getName(): string {
     return 'report';
   }
