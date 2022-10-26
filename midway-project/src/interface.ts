@@ -23,3 +23,9 @@ export interface WeatherInfo {
     Radar: string;
   };
 }
+
+export interface User {
+  id: number;
+  name: string;
+  age: number;
+}
