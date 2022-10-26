@@ -25,7 +25,8 @@ export interface WeatherInfo {
 }
 
 export interface User {
-  id: number;
-  name: string;
-  age: number;
+  uid: string;
+  username: string;
+  phone: string;
+  email: string;
 }
