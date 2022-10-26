@@ -25,6 +25,7 @@ import { WeatherErrorFilter } from './filter/weather.filter';
   importConfigs: [join(__dirname, './config')],
 })
 export class ContainerLifeCycle {
+  // 在所有被依赖注入容器管理的类中，都可以使用 @App() 装饰器来获取 当前最主要 的 Application
   @App()
   app: koa.Application;
 
@@ -45,5 +46,22 @@ export class ContainerLifeCycle {
 
     // add filter
     this.app.useFilter([WeatherErrorFilter]);
+
+    // 用于获取项目根目录路径。
+    // console.log('getAppDir =>', this.app.getAppDir());
+    // 用于获取项目 TypeScript 基础路径，默认开发中为 src 目录，编译后为 dist 目录。
+    // console.log('getBaseDir =>', this.app.getBaseDir());
+    // 获取当前项目环境。
+    // console.log('getEnv =>', this.app.getEnv());
+    // 获取当前全局依赖注入容器。
+    // console.log('getApplicationContext =>', this.app.getApplicationContext());
+
+    // 获取特定 key 配置
+    // console.log('getConfig =>', this.app.getConfig('koa'));
+    // 获取某个 Logger，不传参数，默认返回 appLogger
+    // console.log('getLogger =>', this.app.getLogger());
+
+    // 获取当前框架类型。已弃用
+    // console.log('getFrameworkType =>', this.app.getFrameworkType());
   }
 }
