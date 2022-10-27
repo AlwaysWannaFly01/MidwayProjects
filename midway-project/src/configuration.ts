@@ -3,12 +3,14 @@ import * as koa from '@midwayjs/koa';
 import * as validate from '@midwayjs/validate';
 import * as info from '@midwayjs/info';
 import { join } from 'path';
-// import { DefaultErrorFilter } from './filter/default.filter';
-// import { NotFoundFilter } from './filter/notfound.filter';
+import { DefaultErrorFilter } from './filter/default.filter';
+import { NotFoundFilter } from './filter/notfound.filter';
 import { ReportMiddleware } from './middleware/report.middleware';
 import { fnMiddleware } from './middleware/another.middleware';
 import * as view from '@midwayjs/view-nunjucks';
 import { WeatherErrorFilter } from './filter/weather.filter';
+import { InternalServerErrorFilter } from './filter/internal.filter';
+
 //configuration 文件是 Midway 的生命周期入口文件，承担了组件开关，配置加载和生命周期管理的作用
 
 @Configuration({
@@ -63,5 +65,11 @@ export class ContainerLifeCycle {
 
     // 获取当前框架类型。已弃用
     // console.log('getFrameworkType =>', this.app.getFrameworkType());
+
+    this.app.useFilter([
+      InternalServerErrorFilter,
+      DefaultErrorFilter,
+      NotFoundFilter,
+    ]);
   }
 }
